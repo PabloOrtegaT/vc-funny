@@ -70,7 +70,7 @@ export default function HomePage() {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="mb-8">
-        <h1 className="text-4xl font-bold text-amber-100 mb-2">Latest News & Update</h1>
+        <h1 className="text-4xl font-bold text-amber-100 mb-2">Latest News & Update - I think I did it guys</h1>
         <p className="text-slate-300">Stay updated with the latest VCFunny developments</p>
       </div>
 
