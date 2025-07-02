@@ -8,37 +8,126 @@ import { Search, Package, MapPin } from "lucide-react"
 
 // Mock trade goods data
 const tradeGoods = [
-  { name: "Almond", price: 25, weight: 3, cities: ["Suez"] },
-  { name: "Aloe", price: 30, weight: 5, cities: ["Tourane", "Semarang", "San Diego"] },
-  { name: "Amber", price: 100, weight: 7, cities: ["Accra", "Oslo"] },
-  { name: "Banana", price: 25, weight: 1, cities: ["Athens"] },
-  { name: "Bear Gallbladder", price: 40, weight: 6, cities: ["Hamburg"] },
-  { name: "Beef", price: 25, weight: 2, cities: ["Tripoli", "Bordeaux", "London"] },
-  { name: "Brandy", price: 80, weight: 4, cities: ["Bordeaux", "Lisbon"] },
-  { name: "Cacao", price: 45, weight: 3, cities: ["Veracruz", "Caracas"] },
-  { name: "Cinnamon", price: 120, weight: 2, cities: ["Ceylon", "Malacca"] },
-  { name: "Coffee", price: 35, weight: 3, cities: ["Mocha", "Java", "Brazil"] },
-  { name: "Cotton", price: 20, weight: 4, cities: ["Alexandria", "Charleston"] },
-  { name: "Diamonds", price: 500, weight: 1, cities: ["Cape Town", "Antwerp"] },
-  { name: "Ebony", price: 90, weight: 8, cities: ["Madagascar", "Ceylon"] },
-  { name: "Furs", price: 60, weight: 5, cities: ["Quebec", "St. Petersburg"] },
-  { name: "Gold", price: 300, weight: 10, cities: ["Lima", "Macao"] },
-  { name: "Ivory", price: 150, weight: 6, cities: ["Luanda", "Zanzibar"] },
-  { name: "Jade", price: 200, weight: 4, cities: ["Canton", "Nagasaki"] },
-  { name: "Nutmeg", price: 180, weight: 2, cities: ["Banda", "Ternate"] },
-  { name: "Opium", price: 250, weight: 3, cities: ["Calcutta", "Canton"] },
-  { name: "Pearls", price: 400, weight: 1, cities: ["Bahrain", "Ceylon"] },
-  { name: "Pepper", price: 90, weight: 3, cities: ["Calicut", "Malacca"] },
-  { name: "Porcelain", price: 110, weight: 5, cities: ["Jingdezhen", "Canton"] },
-  { name: "Rum", price: 50, weight: 4, cities: ["Jamaica", "Barbados"] },
-  { name: "Silk", price: 160, weight: 2, cities: ["Constantinople", "Venice"] },
-  { name: "Silver", price: 200, weight: 8, cities: ["Potosi", "Acapulco"] },
-  { name: "Spices", price: 70, weight: 3, cities: ["Goa", "Hormuz"] },
-  { name: "Sugar", price: 40, weight: 6, cities: ["Havana", "Recife"] },
-  { name: "Tea", price: 55, weight: 2, cities: ["Canton", "Nagasaki"] },
-  { name: "Tobacco", price: 30, weight: 4, cities: ["Virginia", "Havana"] },
-  { name: "Wine", price: 35, weight: 5, cities: ["Bordeaux", "Porto"] },
-]
+  { name: "Almond", cities: ["Suez"] },
+  { name: "Aloe", cities: ["Tourane", "Semarang", "San Diego"] },
+  { name: "Amber", cities: ["Accra", "Oslo"] },
+  { name: "Ambergris", cities: ["Nagasaki", "Tourane", "Semarang", "Magellan Supply Station"] },
+  { name: "Amethyst", cities: ["Seoul"] },
+  { name: "Antler Decoration", cities: ["Lisbon", "Reykjavik"] },
+  { name: "Antiques", cities: ["Hamburg", "Alexander", "Edo", "Barcelona"] },
+  { name: "Apple", cities: ["Barcelona"] },
+  { name: "Banana", cities: ["Athens"] },
+  { name: "Bear Gallbladder", cities: ["Hamburg"] },
+  { name: "Beef", cities: ["Tripoli", "Bordeaux", "London"] },
+  { name: "Beer", cities: ["Beirut", "Sri Lanka", "Cape Town", "Cruz", "Magellan Supply Station"] },
+  { name: "Brandy", cities: ["Lisbon", "Istanbul", "Bordeaux", "Madeira"] },
+  { name: "Bronzeware", cities: ["Seville", "Barcelona"] },
+  { name: "Cabinet", cities: ["Muscat", "Mogadishu", "Amsterdam"] },
+  { name: "Canvas", cities: ["Nagasaki", "Stockholm", "Dakar"] },
+  { name: "Carpet", cities: ["Hamburg", "Las Palmas", "Madeira", "Oslo"] },
+  { name: "Carvings", cities: ["Tripoli", "Stockholm"] },
+  { name: "Chest", cities: ["Muscat", "Tourane"] },
+  { name: "Champagne", cities: ["Bordeaux"] },
+  { name: "Chinese Medicine Liquer", cities: ["Zhigu"] },
+  { name: "Cinnamon", cities: ["Aden", "Las Palmas", "Madeira", "Luanda"] },
+  { name: "Cocoa", cities: ["Cruz", "Salinas"] },
+  { name: "Coffee", cities: ["Aden", "Cape Town", "Luanda", "San Diego"] },
+  { name: "Corn", cities: ["Mozambique", "Cape Town", "Salinas", "San Francisco"] },
+  { name: "Cotton Fabric", cities: ["Venice", "Genoa", "Algiers", "Bombay"] },
+  { name: "Crystal", cities: ["Nagasaki"] },
+  { name: "Date", cities: ["Beirut", "Accra", "Mogadishu"] },
+  { name: "Datura", cities: ["Muscat", "Basra"] },
+  { name: "Diamond", cities: ["Muscat"] },
+  { name: "Dyes", cities: ["Alexander", "Genoa", "Mozambique", "Salinas", "Seward"] },
+  { name: "Emerald", cities: ["San Diego  ***Bug will also rename Jadeite as Emerald"] },
+  { name: "Fish", cities: ["Istanbul", "Dakar"] },
+  { name: "Fruit Jam", cities: ["Reykjavik", "Dakar", "Salinas"] },
+  { name: "Glassware", cities: ["Hamburg", "Athens", "Lisbon"] },
+  { name: "Ginseng", cities: ["Seville"] },
+  { name: "Gold", cities: ["Cape Town", "San Francisco"] },
+  { name: "Goldware", cities: ["Mogadishu", "Salinas"] },
+  { name: "Grape", cities: ["Algiers"] },
+  { name: "Granulated Sugar", cities: ["Beirut", "Luanda"] },
+  { name: "Handicraft", cities: ["Quanzhou", "San Diego"] },
+  { name: "Hide", cities: ["Basra", "Madeira", "Dakar", "Oslo", "Seward"] },
+  { name: "Honey", cities: ["Istanbul", "Malacca", "Mozambique", "Seward"] },
+  { name: "Ironware", cities: ["Suez", "Alexander", "London"] },
+  { name: "Isatis Root", cities: ["Basra", "Sri Lanka", "Cruz"] },
+  { name: "Ivory", cities: ["Sri Lanka", "Bombay"] },
+  { name: "Ivory Carvings (Crafts)", cities: ["Algiers", "Las Palmas"] },
+  { name: "Jewelry", cities: ["Beirut", "Genoa", "Mozambique"] },
+  { name: "Jadeite", cities: ["Luanda  ***Bug will also rename Jadeite as Emerald"] },
+  { name: "Kimchi", cities: ["Seoul"] },
+  { name: "Kimono", cities: ["Nagasaki", "Edo"] },
+  { name: "King Salmon", cities: ["Magellan Supply Station"] },
+  { name: "Kite", cities: ["Zhigu", "Seoul"] },
+  { name: "Korean Dress", cities: ["Seoul"] },
+  { name: "Korean Ginseng", cities: ["Seoul"] },
+  { name: "Lacquered Work", cities: ["Seoul"] },
+  { name: "Leather", cities: ["Muscat", "Genoa", "Basra"] },
+  { name: "Lemon", cities: ["Accra", "Mogadishu"] },
+  { name: "Lichi", cities: ["Edo", "Malacca", "Sri Lanka"] },
+  { name: "Linen", cities: ["Nagasaki", "Athens", "Tripoli", "Bombay"] },
+  { name: "Lizard Tail", cities: ["Mogadishu", "Mozambique"] },
+  { name: "Lobster", cities: ["Seville", "Barcelona", "Magellan Supply Station"] },
+  { name: "Longan", cities: ["Quanzhou"] },
+  { name: "Marble", cities: ["Alexander", "Seville", "Suez", "Tripoli", "Bombay", "San Francisco"] },
+  { name: "Marijuana", cities: ["Semarang", "Malacca", "Dakar", "San Diego"] },
+  { name: "Mirror", cities: ["Seville", "Stockholm"] },
+  { name: "Mutton", cities: ["Suez", "Alexander"] },
+  { name: "Oil Painting", cities: ["Athens", "Algiers", "Oslo"] },
+  { name: "Olive", cities: ["Istanbul", "Aden"] },
+  { name: "Olive Oil", cities: ["Venice", "Basra", "Bombay", "Amsterdam"] },
+  { name: "Orange", cities: ["Venice"] },
+  { name: "Pear", cities: ["Nagasaki", "Genoa"] },
+  { name: "Pearl", cities: ["Malacca"] },
+  { name: "Pepper", cities: ["Accra", "Cruz"] },
+  { name: "Pendant Lamp", cities: ["Reykjavik"] },
+  { name: "Picea", cities: ["Seward"] },
+  { name: "Pilrose Antler", cities: ["Suez", "Stockholm", "Amsterdam", "Mozambique"] },
+  { name: "Pollen", cities: ["Semarang", "Seward"] },
+  { name: "Porcelain", cities: ["Zhigu", "Beirut", "Salinas"] },
+  { name: "Pork", cities: ["Venice", "Tourane"] },
+  { name: "Pure White Lotus", cities: ["Stockholm"] },
+  { name: "Reindeer Antlers", cities: ["Seward"] },
+  { name: "Reishi", cities: ["Edo"] },
+  { name: "Rice", cities: ["Muscat", "Basra"] },
+  { name: "Rice Wine", cities: ["Edo"] },
+  { name: "Rose Oil", cities: ["Malacca", "Amsterdam"] },
+  { name: "Rum", cities: ["Hamburg", "Reykjavik", "San Diego"] },
+  { name: "Salt", cities: ["Hamburg", "Athens", "Cruz"] },
+  { name: "Saffron", cities: ["Bordeaux"] },
+  { name: "Scorpion  Venom (Poison)", cities: ["Accra", "Luanda"] },
+  { name: "Sculpture", cities: ["London"] },
+  { name: "Seafood", cities: ["Athens", "Madeira", "Magellan Supply Station"] },
+  { name: "Silk", cities: ["Quanzhou"] },
+  { name: "Silk Fabric", cities: ["Zhigu", "Quanzhou"] },
+  { name: "Silver", cities: ["Zhigu"] },
+  { name: "Silverware", cities: ["Tourane", "Semarang"] },
+  { name: "Snake Gallbladder", cities: ["Dakar", "Accra"] },
+  { name: "Soybean", cities: ["Algiers"] },
+  { name: "Spices", cities: ["Mogadishu", "Aden", "Sri Lanka", "Bombay"] },
+  { name: "Stone Carving", cities: ["Quanzhou"] },
+  { name: "Sword Ornament", cities: ["London", "Aden"] },
+  { name: "Tableware", cities: ["London", "Madeira"] },
+  { name: "Tea", cities: ["Quanzhou"] },
+  { name: "Tobacco", cities: ["Tourane", "Aden", "Magellan Supply Station", "San Francisco"] },
+  { name: "Tomato", cities: ["Beirut", "Malacca"] },
+  { name: "Tulip", cities: ["Genoa", "Bordeaux"] },
+  { name: "Vegetable", cities: ["Edo", "Amsterdam"] },
+  { name: "Velvet", cities: ["Stockholm", "Algiers"] },
+  { name: "Violin", cities: ["Istanbul", "Reykjavik", "Cape Town"] },
+  { name: "Vodka", cities: ["Seville", "Las Palmas", "Luanda"] },
+  { name: "Watch", cities: ["Lisbon", "Venice", "Bordeaux"] },
+  { name: "Western Medicine Liqueur", cities: ["Reykjavik"] },
+  { name: "Whale Oil", cities: ["Lisbon", "Barcelona", "Las Palmas", "Oslo"] },
+  { name: "Wheat", cities: ["Alexander", "Semarang", "Las Palmas", "Sri Lanka"] },
+  { name: "Whiskey", cities: ["Venice", "Barcelona", "London", "San Francisco"] },
+  { name: "Wood Carvings", cities: ["Amsterdam"] },
+  { name: "Wool", cities: ["Suez", "Tripoli", "Cape Town", "Oslo"] },
+  { name: "Wool Fabric", cities: ["Lisbon", "Istanbul", "Tripoli"] },
+  { name: "Yellow Wine", cities: ["Zhigu"] },
+];
 
 export default function TradeGoodsPage() {
   const [searchTerm, setSearchTerm] = useState("")
@@ -82,8 +171,7 @@ export default function TradeGoodsPage() {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="mb-8">
-        <h1 className="text-4xl font-bold text-amber-100 mb-2">Trade Goods Directory</h1>
-        <p className="text-slate-300">Complete catalog of trading goods and their locations</p>
+        <h1 className="text-4xl font-bold text-amber-100 mb-2">Trade Goods Locations</h1>
       </div>
 
       {/* Search */}
@@ -124,17 +212,10 @@ export default function TradeGoodsPage() {
                           <Package className="h-4 w-4" />
                           {good.name}
                         </CardTitle>
-                        <Badge variant="outline" className="border-slate-600 text-slate-300">
-                          {good.weight} tons
-                        </Badge>
                       </div>
                     </CardHeader>
                     <CardContent className="space-y-3">
                       <div className="flex items-center justify-between">
-                        <span className="text-slate-400">Base Price:</span>
-                        <span className={`font-bold text-lg ${getProfitabilityColor(good.price)}`}>
-                          {good.price} gold
-                        </span>
                       </div>
                       <div>
                         <div className="flex items-center gap-2 mb-2">
@@ -151,7 +232,6 @@ export default function TradeGoodsPage() {
                       </div>
                       <div className="pt-2 border-t border-slate-700">
                         <span className="text-xs text-slate-500">
-                          Profit/Weight Ratio: {(good.price / good.weight).toFixed(1)}
                         </span>
                       </div>
                     </CardContent>

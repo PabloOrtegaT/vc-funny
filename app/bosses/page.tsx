@@ -13,7 +13,7 @@ const bosses = [
     name: "Kraken of the Deep",
     location: "North Atlantic",
     respawnTime: "06:00",
-    difficulty: "Legendary",
+   
     rewards: "Kraken Tentacle, Deep Sea Pearls",
   },
   {
@@ -138,19 +138,6 @@ export default function BossesPage() {
     return `${hoursLeft}h ${minutesLeft}m`
   }
 
-  const getDifficultyColor = (difficulty: string) => {
-    switch (difficulty) {
-      case "Epic":
-        return "bg-purple-600"
-      case "Legendary":
-        return "bg-orange-600"
-      case "Mythic":
-        return "bg-red-600"
-      default:
-        return "bg-blue-600"
-    }
-  }
-
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="mb-8">
@@ -192,7 +179,6 @@ export default function BossesPage() {
               <CardHeader>
                 <div className="flex items-start justify-between">
                   <CardTitle className="text-lg text-amber-100">{boss.name}</CardTitle>
-                  <Badge className={`${getDifficultyColor(boss.difficulty)} text-white`}>{boss.difficulty}</Badge>
                 </div>
               </CardHeader>
               <CardContent className="space-y-3">

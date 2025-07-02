@@ -71,12 +71,6 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="mb-8">
-        <h1 className="text-4xl font-bold text-amber-100 mb-2">Join the Community</h1>
-        <p className="text-slate-300">Register to stay updated with VCFunny news and community features</p>
-      </div>
-
       <div className="max-w-2xl mx-auto">
         <Card className="bg-slate-800 border-slate-700">
           <CardHeader>
@@ -90,7 +84,7 @@ export default function RegisterPage() {
               {/* Username */}
               <div className="space-y-2">
                 <Label htmlFor="username" className="text-slate-300 font-medium">
-                  Username / In-Game Name *
+                  Username
                 </Label>
                 <Input
                   id="username"
@@ -106,7 +100,7 @@ export default function RegisterPage() {
               {/* Email */}
               <div className="space-y-2">
                 <Label htmlFor="email" className="text-slate-300 font-medium">
-                  Email Address (Optional)
+                  Email Address
                 </Label>
                 <Input
                   id="email"
@@ -116,66 +110,9 @@ export default function RegisterPage() {
                   placeholder="your.email@example.com"
                   className="bg-slate-700 border-slate-600 text-slate-300 placeholder-slate-400"
                 />
-                <p className="text-xs text-slate-500">
-                  We'll only use this to notify you about major updates and community events.
-                </p>
+
               </div>
 
-              {/* Favorite Aspect */}
-              <div className="space-y-2">
-                <Label htmlFor="favoriteAspect" className="text-slate-300 font-medium">
-                  Favorite Aspect of VCFunny
-                </Label>
-                <Select
-                  value={formData.favoriteAspect}
-                  onValueChange={(value) => handleInputChange("favoriteAspect", value)}
-                >
-                  <SelectTrigger className="bg-slate-700 border-slate-600 text-slate-300">
-                    <SelectValue placeholder="Select your favorite aspect" />
-                  </SelectTrigger>
-                  <SelectContent className="bg-slate-700 border-slate-600">
-                    <SelectItem value="naval-combat" className="text-slate-300 focus:bg-slate-600">
-                      Naval Combat
-                    </SelectItem>
-                    <SelectItem value="trading" className="text-slate-300 focus:bg-slate-600">
-                      Trading & Economics
-                    </SelectItem>
-                    <SelectItem value="exploration" className="text-slate-300 focus:bg-slate-600">
-                      Exploration
-                    </SelectItem>
-                    <SelectItem value="land-combat" className="text-slate-300 focus:bg-slate-600">
-                      Land Combat
-                    </SelectItem>
-                    <SelectItem value="city-building" className="text-slate-300 focus:bg-slate-600">
-                      City Building
-                    </SelectItem>
-                    <SelectItem value="pvp" className="text-slate-300 focus:bg-slate-600">
-                      Player vs Player
-                    </SelectItem>
-                    <SelectItem value="community" className="text-slate-300 focus:bg-slate-600">
-                      Community & Social
-                    </SelectItem>
-                    <SelectItem value="other" className="text-slate-300 focus:bg-slate-600">
-                      Other
-                    </SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-
-              {/* Comments */}
-              <div className="space-y-2">
-                <Label htmlFor="comments" className="text-slate-300 font-medium">
-                  Additional Comments (Optional)
-                </Label>
-                <Textarea
-                  id="comments"
-                  value={formData.comments}
-                  onChange={(e) => handleInputChange("comments", e.target.value)}
-                  placeholder="Tell us what you'd like to see on this reference site, or any feedback about VCFunny..."
-                  rows={4}
-                  className="bg-slate-700 border-slate-600 text-slate-300 placeholder-slate-400 resize-none"
-                />
-              </div>
 
               {/* Submit Button */}
               <div className="pt-4">
@@ -194,14 +131,9 @@ export default function RegisterPage() {
                   )}
                 </Button>
               </div>
-
-              <p className="text-xs text-slate-500 text-center">
-                By registering, you agree to receive occasional updates about VCFunny community features and events.
-              </p>
             </form>
           </CardContent>
         </Card>
       </div>
-    </div>
   )
 }
