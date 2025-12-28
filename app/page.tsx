@@ -7,50 +7,50 @@ import { Calendar, Clock, ChevronLeft, ChevronRight } from "lucide-react"
 const newsItems = [
   {
     id: 1,
-    title: "Major Sea Combat Update - Version 2.4.1",
+    title: "Server up and running",
     summary:
-      "New ship types, improved cannon mechanics, and enhanced naval battles. This update brings significant improvements to sea warfare.",
-    date: "2024-12-28",
+      "The server is up and running. We are working on adding new features and improving the game experience.",
+    date: "2025-12-26",
     time: "14:30",
-    version: "v2.4.1",
-    type: "patch",
-  },
-  {
-    id: 2,
-    title: "Holiday Event: Winter Treasure Hunt",
-    summary:
-      "Special holiday event featuring exclusive rewards, limited-time bosses, and festive decorations across all ports.",
-    date: "2024-12-25",
-    time: "09:00",
-    type: "event",
-  },
-  {
-    id: 3,
-    title: "New Trading Routes Discovered",
-    summary:
-      "Three new trading routes have been added connecting the Caribbean to the Mediterranean. New goods and opportunities await!",
-    date: "2024-12-22",
-    time: "16:45",
+    version: "v0.0.1",
     type: "news",
   },
-  {
-    id: 4,
-    title: "Bug Fixes and Performance Improvements - Version 2.4.0",
-    summary: "Fixed various issues with ship movement, trading calculations, and server stability improvements.",
-    date: "2024-12-20",
-    time: "11:20",
-    version: "v2.4.0",
-    type: "patch",
-  },
-  {
-    id: 5,
-    title: "Boss Respawn Times Adjusted",
-    summary:
-      "Several boss respawn times have been rebalanced based on community feedback. Check the Boss Respawn tab for updated schedules.",
-    date: "2024-12-18",
-    time: "13:15",
-    type: "news",
-  },
+  // {
+  //   id: 2,
+  //   title: "Holiday Event: Winter Treasure Hunt",
+  //   summary:
+  //     "Special holiday event featuring exclusive rewards, limited-time bosses, and festive decorations across all ports.",
+  //   date: "2024-12-25",
+  //   time: "09:00",
+  //   type: "event",
+  // },
+  // {
+  //   id: 3,
+  //   title: "New Trading Routes Discovered",
+  //   summary:
+  //     "Three new trading routes have been added connecting the Caribbean to the Mediterranean. New goods and opportunities await!",
+  //   date: "2024-12-22",
+  //   time: "16:45",
+  //   type: "news",
+  // },
+  // {
+  //   id: 4,
+  //   title: "Bug Fixes and Performance Improvements - Version 2.4.0",
+  //   summary: "Fixed various issues with ship movement, trading calculations, and server stability improvements.",
+  //   date: "2024-12-20",
+  //   time: "11:20",
+  //   version: "v2.4.0",
+  //   type: "patch",
+  // },
+  // {
+  //   id: 5,
+  //   title: "Boss Respawn Times Adjusted",
+  //   summary:
+  //     "Several boss respawn times have been rebalanced based on community feedback. Check the Boss Respawn tab for updated schedules.",
+  //   date: "2024-12-18",
+  //   time: "13:15",
+  //   type: "news",
+  // },
 ]
 
 export default function HomePage() {

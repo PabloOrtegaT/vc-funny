@@ -9,10 +9,8 @@ import { Menu, Anchor, Map, Sword, Package, UserPlus, Home } from "lucide-react"
 
 const navItems = [
   { href: "/", label: "Home", icon: Home },
-  { href: "/guides", label: "Guides", icon: Map },
   { href: "/bosses", label: "Boss Respawn & Events", icon: Sword },
   { href: "/trade-goods", label: "Trade Goods", icon: Package },
-  { href: "/register", label: "Register", icon: UserPlus },
 ]
 
 export function Navigation() {

@@ -6,47 +6,26 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Badge } from "@/components/ui/badge"
 import { Clock, MapPin, Calendar, Skull } from "lucide-react"
 
-// Mock boss data
+// Global first appearance time for all bosses
+const GLOBAL_FIRST_APPEARANCE = "00:00"
+
+// Mock boss data with respawn intervals (in hours)
 const bosses = [
   {
     id: 1,
-    name: "Kraken of the Deep",
-    location: "North Atlantic",
-    respawnTime: "06:00",
-   
-    rewards: "Kraken Tentacle, Deep Sea Pearls",
+    name: "Anubis",
+    location: "Pyramid top level",
+    respawnInterval: 3, // 3 hours
+    difficulty: "Common",
+    rewards: "...",
   },
   {
     id: 2,
-    name: "Captain Blackheart",
-    location: "Caribbean Sea",
-    respawnTime: "12:00",
+    name: "Lost King",
+    location: "Madeira Suburb",
+    respawnInterval: 3, // 4 hours
     difficulty: "Epic",
-    rewards: "Blackheart's Cutlass, Gold Coins",
-  },
-  {
-    id: 3,
-    name: "Sea Serpent Leviathan",
-    location: "Mediterranean",
-    respawnTime: "18:00",
-    difficulty: "Legendary",
-    rewards: "Serpent Scale Armor, Ancient Scrolls",
-  },
-  {
-    id: 4,
-    name: "Ghost Ship Admiral",
-    location: "Bermuda Triangle",
-    respawnTime: "00:00",
-    difficulty: "Mythic",
-    rewards: "Spectral Cannon, Phantom Compass",
-  },
-  {
-    id: 5,
-    name: "Storm Lord Poseidon",
-    location: "Pacific Ocean",
-    respawnTime: "15:30",
-    difficulty: "Mythic",
-    rewards: "Trident of Storms, Lightning Crystals",
+    rewards: "...",
   },
 ]
 
@@ -77,18 +56,47 @@ const events = [
 
 const timezones = [
   { value: "UTC", label: "UTC (GMT+0)" },
+  { value: "GMT", label: "Greenwich Mean Time (GMT+0)" },
   { value: "EST", label: "Eastern Time (GMT-5)" },
+  { value: "EDT", label: "Eastern Daylight Time (GMT-4)" },
+  { value: "CST", label: "Central Time (GMT-6)" },
+  { value: "CDT", label: "Central Daylight Time (GMT-5)" },
+  { value: "MST", label: "Mountain Time (GMT-7)" },
+  { value: "MDT", label: "Mountain Daylight Time (GMT-6)" },
   { value: "PST", label: "Pacific Time (GMT-8)" },
+  { value: "PDT", label: "Pacific Daylight Time (GMT-7)" },
+  { value: "AKST", label: "Alaska Time (GMT-9)" },
+  { value: "HST", label: "Hawaii Time (GMT-10)" },
   { value: "CET", label: "Central European (GMT+1)" },
+  { value: "CEST", label: "Central European Summer (GMT+2)" },
+  { value: "EET", label: "Eastern European (GMT+2)" },
+  { value: "EEST", label: "Eastern European Summer (GMT+3)" },
+  { value: "GMT+1", label: "London (GMT+1)" },
+  { value: "MSK", label: "Moscow Time (GMT+3)" },
+  { value: "IST", label: "India Standard Time (GMT+5:30)" },
+  { value: "CST-China", label: "China Standard Time (GMT+8)" },
+  { value: "SGT", label: "Singapore Time (GMT+8)" },
   { value: "JST", label: "Japan Standard (GMT+9)" },
+  { value: "KST", label: "Korea Standard Time (GMT+9)" },
   { value: "AEST", label: "Australian Eastern (GMT+10)" },
+  { value: "AEDT", label: "Australian Eastern Daylight (GMT+11)" },
+  { value: "ACST", label: "Australian Central (GMT+9:30)" },
+  { value: "AWST", label: "Australian Western (GMT+8)" },
+  { value: "NZST", label: "New Zealand Standard (GMT+12)" },
+  { value: "BRT", label: "Brasilia Time (GMT-3)" },
+  { value: "ART", label: "Argentina Time (GMT-3)" },
+  { value: "CLT", label: "Chile Time (GMT-4)" },
+  { value: "MEX", label: "Mexico City Time (GMT-6)" },
 ]
 
 export default function BossesPage() {
   const [selectedTimezone, setSelectedTimezone] = useState("UTC")
-  const [currentTime, setCurrentTime] = useState(new Date())
+  const [currentTime, setCurrentTime] = useState<Date | null>(null)
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
+    setMounted(true)
+    setCurrentTime(new Date())
     const timer = setInterval(() => {
       setCurrentTime(new Date())
     }, 1000)
@@ -101,41 +109,138 @@ export default function BossesPage() {
     let convertedHours = hours
 
     switch (selectedTimezone) {
+      case "UTC":
+      case "GMT":
+        convertedHours = hours
+        break
       case "EST":
         convertedHours = (hours - 5 + 24) % 24
+        break
+      case "EDT":
+        convertedHours = (hours - 4 + 24) % 24
+        break
+      case "CST":
+        convertedHours = (hours - 6 + 24) % 24
+        break
+      case "CDT":
+        convertedHours = (hours - 5 + 24) % 24
+        break
+      case "MST":
+        convertedHours = (hours - 7 + 24) % 24
+        break
+      case "MDT":
+        convertedHours = (hours - 6 + 24) % 24
         break
       case "PST":
         convertedHours = (hours - 8 + 24) % 24
         break
+      case "PDT":
+        convertedHours = (hours - 7 + 24) % 24
+        break
+      case "AKST":
+        convertedHours = (hours - 9 + 24) % 24
+        break
+      case "HST":
+        convertedHours = (hours - 10 + 24) % 24
+        break
       case "CET":
         convertedHours = (hours + 1) % 24
         break
+      case "CEST":
+        convertedHours = (hours + 2) % 24
+        break
+      case "EET":
+        convertedHours = (hours + 2) % 24
+        break
+      case "EEST":
+        convertedHours = (hours + 3) % 24
+        break
+      case "GMT+1":
+        convertedHours = (hours + 1) % 24
+        break
+      case "MSK":
+        convertedHours = (hours + 3) % 24
+        break
+      case "IST":
+        convertedHours = (hours + 5.5 + 24) % 24
+        break
+      case "CST-China":
+      case "SGT":
+      case "AWST":
+        convertedHours = (hours + 8) % 24
+        break
       case "JST":
+      case "KST":
         convertedHours = (hours + 9) % 24
+        break
+      case "ACST":
+        convertedHours = (hours + 9.5 + 24) % 24
         break
       case "AEST":
         convertedHours = (hours + 10) % 24
         break
+      case "AEDT":
+        convertedHours = (hours + 11) % 24
+        break
+      case "NZST":
+        convertedHours = (hours + 12) % 24
+        break
+      case "BRT":
+      case "ART":
+        convertedHours = (hours - 3 + 24) % 24
+        break
+      case "CLT":
+        convertedHours = (hours - 4 + 24) % 24
+        break
+      case "MEX":
+        convertedHours = (hours - 6 + 24) % 24
+        break
+    }
+
+    // Handle half-hour offsets
+    if (selectedTimezone === "IST" || selectedTimezone === "ACST") {
+      const convertedMinutes = minutes
+      return `${Math.floor(convertedHours).toString().padStart(2, "0")}:${convertedMinutes.toString().padStart(2, "0")}`
     }
 
     return `${convertedHours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}`
   }
 
-  const getTimeUntilRespawn = (respawnTime: string) => {
-    const [hours, minutes] = respawnTime.split(":").map(Number)
+  const getNextRespawnTime = (firstAppearance: string, respawnInterval: number) => {
+    const [hours, minutes] = firstAppearance.split(":").map(Number)
     const now = new Date()
-    const respawn = new Date()
-    respawn.setHours(hours, minutes, 0, 0)
-
-    if (respawn <= now) {
-      respawn.setDate(respawn.getDate() + 1)
+    
+    // Start from first appearance today
+    let nextRespawn = new Date()
+    nextRespawn.setHours(hours, minutes, 0, 0)
+    
+    // Keep adding the interval until we find a future time
+    while (nextRespawn <= now) {
+      nextRespawn.setTime(nextRespawn.getTime() + respawnInterval * 60 * 60 * 1000)
     }
+    
+    return nextRespawn
+  }
 
-    const diff = respawn.getTime() - now.getTime()
+  const getTimeUntilRespawn = (firstAppearance: string, respawnInterval: number) => {
+    if (!mounted) return 'Loading...'
+    
+    const nextRespawn = getNextRespawnTime(firstAppearance, respawnInterval)
+    const now = new Date()
+    
+    const diff = nextRespawn.getTime() - now.getTime()
     const hoursLeft = Math.floor(diff / (1000 * 60 * 60))
     const minutesLeft = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))
-
+    
     return `${hoursLeft}h ${minutesLeft}m`
+  }
+
+  const getNextRespawnTimeString = (firstAppearance: string, respawnInterval: number) => {
+    if (!mounted) return '00:00'
+    const nextRespawn = getNextRespawnTime(firstAppearance, respawnInterval)
+    const hours = nextRespawn.getHours()
+    const minutes = nextRespawn.getMinutes()
+    return `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}`
   }
 
   return (
@@ -163,7 +268,7 @@ export default function BossesPage() {
           </Select>
         </div>
         <p className="text-sm text-slate-400">
-          Current time: {currentTime.toLocaleTimeString()} ({selectedTimezone})
+          Current time: {currentTime ? currentTime.toLocaleTimeString() : 'Loading...'} ({selectedTimezone})
         </p>
       </div>
 
@@ -188,11 +293,15 @@ export default function BossesPage() {
                 </div>
                 <div className="flex items-center gap-2 text-slate-300">
                   <Clock className="h-4 w-4" />
-                  <span className="text-sm">Respawns at {convertTime(boss.respawnTime)}</span>
+                  <span className="text-sm">Respawns every {boss.respawnInterval}h</span>
+                </div>
+                <div className="flex items-center gap-2 text-slate-300">
+                  <Clock className="h-4 w-4" />
+                  <span className="text-sm">Next at {convertTime(getNextRespawnTimeString(GLOBAL_FIRST_APPEARANCE, boss.respawnInterval))}</span>
                 </div>
                 <div className="bg-slate-700 rounded-md p-3">
                   <p className="text-xs text-slate-400 mb-1">Time until respawn:</p>
-                  <p className="text-lg font-bold text-amber-400">{getTimeUntilRespawn(boss.respawnTime)}</p>
+                  <p className="text-lg font-bold text-amber-400">{getTimeUntilRespawn(GLOBAL_FIRST_APPEARANCE, boss.respawnInterval)}</p>
                 </div>
                 <div>
                   <p className="text-xs text-slate-400 mb-1">Rewards:</p>
@@ -205,7 +314,7 @@ export default function BossesPage() {
       </div>
 
       {/* Events */}
-      <div>
+      {/* <div>
         <h2 className="text-2xl font-bold text-amber-100 mb-6 flex items-center gap-2">
           <Calendar className="h-6 w-6" />
           Scheduled Events
@@ -229,7 +338,7 @@ export default function BossesPage() {
             </Card>
           ))}
         </div>
-      </div>
+      </div> */}
     </div>
   )
 }
